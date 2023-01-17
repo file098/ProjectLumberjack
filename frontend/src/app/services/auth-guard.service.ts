@@ -15,14 +15,14 @@ export class AuthGuardService {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (this._authService.getToken()) {
-      console.log('allowed');
+    // if (this._authService.getToken()) {
+    //   console.log('allowed');
 
-      return true;
-    } // navigate to login page
-    this._router.navigate(['/profile']);
-    // you can save redirect url so after authing we can move them back to the page they requested
-    console.log('not allowed');
+    //   return true;
+    // } // navigate to login page
+    // this._router.navigate(['/profile']);
+    // // you can save redirect url so after authing we can move them back to the page they requested
+    // console.log('not allowed');
 
     return false;
   }

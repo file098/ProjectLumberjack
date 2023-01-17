@@ -20,11 +20,10 @@ export class CounterComponent {
 
   increment() {
     let userData = JSON.parse(localStorage.getItem('userData')!);
-    this.counterService.add(userData.username);
-    EventEmitter
+    // this.counterService.add(userData.username);
   }
 
   ngOnInit(): void {
-    this.isLogin = this.auth.getUserDetails() == null ? true : false;
+    // this.isLogin = this.auth.getUserDetails() == null ? true : false;
   }
 }

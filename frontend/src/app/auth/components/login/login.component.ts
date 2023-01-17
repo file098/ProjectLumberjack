@@ -3,41 +3,40 @@ import { NgForm } from '@angular/forms';
 import { ApiService } from './../../../services/api.service';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
+import { User } from '../../user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  isLogin: boolean = false;
+  isLogged: boolean = false;
   errorMessage: any;
   constructor(
     private _api: ApiService,
-    private _auth: AuthService,
+    private auth: AuthService,
     private _router: Router
   ) {}
 
   ngOnInit() {
-    this.isLogin = this._auth.isUserLogin();
+    this.isLogged = localStorage.getItem('token') != undefined;
   }
 
   onSubmit(form: NgForm) {
-    console.log('Your form data : ', form.value);
-    this._api
-      .postTypeRequest('user/login', form.value)
-      .subscribe((res: any) => {
-        if (res.status) {
-          this._auth.setDataInLocalStorage(
-            'userData',
-            JSON.stringify(res.data)
-          );
-          this._auth.setDataInLocalStorage('token', res.token);
-          this._router.navigate(['']);
-        }
-      });
+    const user = new User(form.value.username, form.value.password);
+    
+    this.auth.signIn(user).subscribe((res) => {
+      if (res) {
+        const token = JSON.stringify(res);
+        
+        localStorage.setItem('token', token);
+        this._router.navigate(['']);
+      }
+    });
   }
+
   logout() {
-    this._auth.clearStorage();
+    // this.auth.signOut();
     this._router.navigate(['']);
   }
 }

@@ -19,23 +19,23 @@ export class GlobalStatsComponent {
   ) {}
 
   ngOnInit(): void {
-    this.counterService.getTotal().subscribe((res) => {
-      this.counter = res.data.total;
-    });
+    // this.counterService.getTotal().subscribe((res) => {
+    //   this.counter = res.data.total;
+    // });
 
-    if (this.auth.isUserLogin()) {
-      this.isLogin = true;
-      let userData = JSON.parse(localStorage.getItem('userData')!);
+    // if (this.auth.isUserLogin()) {
+    //   this.isLogin = true;
+    //   let userData = JSON.parse(localStorage.getItem('userData')!);
 
-      this.counterService.getUserTotal(userData.username).subscribe((res) => {
-        this.userCounter = res.data.total;
-      });
+    //   this.counterService.getUserTotal(userData.username).subscribe((res) => {
+    //     this.userCounter = res.data.total;
+    //   });
 
-      this.counterService.getScoreboard().subscribe((res) => {
-        res.data.forEach((userEntry: { username: string; total: number }) => {
-          this.scoreboard.push(userEntry);
-        });
-      });
-    }
+    //   this.counterService.getScoreboard().subscribe((res) => {
+    //     res.data.forEach((userEntry: { username: string; total: number }) => {
+    //       this.scoreboard.push(userEntry);
+    //     });
+    //   });
+    // }
   }
 }

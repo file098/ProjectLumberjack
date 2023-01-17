@@ -34,10 +34,10 @@ export class CounterService {
       .pipe(catchError(this._api.handleError));
   }
 
-  add(username: string): any {
-    let body = { username: username };
-    return this._api.postTypeRequest('user/add', body).subscribe((res: any) => {
-      return res;
-    });
-  }
+  // add(username: string): any {
+  //   let body = { username: username };
+  //   return this._api.postTypeRequest('user/add', body).subscribe((res: any) => {
+  //     return res;
+  //   });
+  // }
 }
