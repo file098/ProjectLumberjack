@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Session = require("./session.model");
 
 const User = mongoose.model(
   "User",
@@ -8,15 +9,17 @@ const User = mongoose.model(
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Role"
-      }
+        ref: "Role",
+      },
     ],
     sessions: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Session"
-      }
-    ]
+        creationDate: Date,
+        review: String,
+        source: String,
+        grade: Number,
+      },
+    ],
   })
 );
 

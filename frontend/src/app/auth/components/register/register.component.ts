@@ -3,7 +3,7 @@ import { ApiService } from './../../../services/api.service';
 import { AuthService } from './../../../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../../user';
+import { User } from '../../../models/user.model';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',

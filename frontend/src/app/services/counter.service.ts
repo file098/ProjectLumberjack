@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, retry, throwError } from 'rxjs';
+import { Session } from '../models/sessions.model';
+import { User } from '../models/user.model';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 
@@ -9,7 +11,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class CounterService {
-  baseURL = 'http://localhost:4000/user/';
+  baseURL = 'http://localhost:8080/api/';
 
   constructor(private _api: ApiService, private http: HttpClient) {}
 
@@ -34,10 +36,13 @@ export class CounterService {
       .pipe(catchError(this._api.handleError));
   }
 
-  // add(username: string): any {
-  //   let body = { username: username };
-  //   return this._api.postTypeRequest('user/add', body).subscribe((res: any) => {
-  //     return res;
-  //   });
-  // }
+  add(username: string, session: Session): Observable<any> {
+    const payload = {
+      username: username,
+      session: session,
+    };
+    
+    return this.http.post(this.baseURL + 'addHandy', payload);
+    // .pipe(catchError(this._api.handleError));
+  }
 }

@@ -1,5 +1,6 @@
 import { outputAst } from '@angular/compiler';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Session } from '../models/sessions.model';
 import { ApiService } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 import { CounterService } from '../services/counter.service';
@@ -19,11 +20,17 @@ export class CounterComponent {
   ) {}
 
   increment() {
-    let userData = JSON.parse(localStorage.getItem('userData')!);
-    // this.counterService.add(userData.username);
+    let username = JSON.parse(localStorage.getItem('token')!).username;
+    if (username) {
+      this.counterService.add(username, new Session()).subscribe((res) => {
+        console.log(res);
+      });
+    } else {
+      console.log('not logged in');
+    }
   }
 
   ngOnInit(): void {
-    // this.isLogin = this.auth.getUserDetails() == null ? true : false;
+    // this.isLogin = this.() == null ? true : false;
   }
 }

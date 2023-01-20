@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ApiService } from './../../../services/api.service';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../user';
+import { User } from '../../../models/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
