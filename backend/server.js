@@ -58,22 +58,6 @@ app.listen(PORT, () => {
 });
 
 function initial() {
-  Session.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Session({
-        creationDate: undefined,
-        review: "",
-        source: "",
-        grade: undefined,
-      }).save((err) => {
-        if (err) {
-          console.log("error", err);
-        }
-        console.log("added empty session collection");
-      });
-    }
-  });
-
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Role({
