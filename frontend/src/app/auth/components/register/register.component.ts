@@ -19,27 +19,15 @@ export class RegisterComponent implements OnInit {
     private _router: Router
   ) {}
   ngOnInit() {
-    // this.isUserLogin();
+    this.isUserLogin();
   }
   onSubmit(form: NgForm) {
-    // this._api
-    //   .postTypeRequest('user/register', form.value)
-    //   .subscribe((res: any) => {
-    //     if (res.status) {
-    //       this._auth.setDataInLocalStorage('userData', res.data);
-    //       this._auth.setDataInLocalStorage('token', res.token);
-    //       this._router.navigate(['login']);
-    //     } else {
-    //       alert(res.status);
-    //     }
-    //   });
-
     const newUser = new User(form.value.username, form.value.password);
     this.auth.signUp(newUser).subscribe((res) => {
       this.auth.signIn(newUser).subscribe((res) => {
         if (res) {
           const token = JSON.stringify(res);
-          
+
           localStorage.setItem('token', token);
           this._router.navigate(['']);
         }
@@ -47,8 +35,9 @@ export class RegisterComponent implements OnInit {
     });
   }
   isUserLogin() {
-    // if (this._auth.getUserDetails() != null) {
-    this.isLogin = true;
+    if (localStorage.getItem('token')) {
+      this.isLogin = true;
+    }
     // }
   }
 }
