@@ -24,4 +24,7 @@ module.exports = function (app) {
   );
 
   app.post("/api/addHandy", controller.addHandy);
+
+  app.get("/api/getAllHandy", controller.totalHandy);
+
 };

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map, Observable, tap } from 'rxjs';
 import { User } from '../models/user.model';
 import { ApiService } from './api.service';
 @Injectable({
@@ -27,9 +27,16 @@ export class AuthService {
     );
   }
 
-  signOut(body: User): Observable<any> {
-    return this.http
-      .post(this.baseURL + 'signout', body)
-      .pipe(catchError(this._api.handleError));
+  signOut(body: string): Observable<any> {
+    return this.http.post(this.baseURL + 'signout', body).pipe(
+      tap({
+        next: (data) => {
+          console.log(data);
+          
+          localStorage.removeItem('token');
+        },
+        error: (error) => console.log(error),
+      })
+    );
   }
 }

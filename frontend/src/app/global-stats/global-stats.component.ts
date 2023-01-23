@@ -19,9 +19,9 @@ export class GlobalStatsComponent {
   ) {}
 
   ngOnInit(): void {
-    // this.counterService.getTotal().subscribe((res) => {
-    //   this.counter = res.data.total;
-    // });
+    this.counterService.getTotal().subscribe((res) => {
+      this.counter = res.total;
+    });
 
     // if (this.auth.isUserLogin()) {
     //   this.isLogin = true;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  loggedIn: boolean = false;
+  username!: string | undefined;
+
+  constructor(private auth: AuthService) {}
+
+  ngOnInit(): void {
+    try {
+      this.username = JSON.parse(localStorage.getItem('token')!).username;
+    } catch {
+      this.username = undefined;
+    }
+
+    if (this.username) {
+      this.loggedIn = true;
+    }
+  }
+
   ngAfterContentInit(): void {
     // this.renderer.listen('')
     const navbarBurgers = Array.prototype.slice.call(
@@ -23,5 +42,11 @@ export class HeaderComponent {
         target2.classList.toggle('is-active');
       });
     });
+  }
+
+  singOut() {
+    this.auth
+      .signOut(this.username!)
+      .subscribe((res) => (this.loggedIn = false));
   }
 }

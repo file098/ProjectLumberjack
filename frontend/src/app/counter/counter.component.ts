@@ -23,7 +23,7 @@ export class CounterComponent {
     let username = JSON.parse(localStorage.getItem('token')!).username;
     if (username) {
       this.counterService.add(username, new Session()).subscribe((res) => {
-        console.log(res);
+        // avvisa il counter global che sono stati aggiunti dei dati (event emitter)
       });
     } else {
       console.log('not logged in');

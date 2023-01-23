@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, map, Observable, retry, throwError } from 'rxjs';
+import { catchError, map, Observable, retry, tap, throwError } from 'rxjs';
 import { Session } from '../models/sessions.model';
 import { User } from '../models/user.model';
 import { ApiService } from './api.service';
@@ -19,7 +19,7 @@ export class CounterService {
     // con l'uso di {observe: 'response'} ritorno tutto l'observable, non solo il JSON
     // return this.http.get(this.baseURL + 'getAll', { observe: 'response' });
     return this.http
-      .get(this.baseURL + 'getAll')
+      .get(this.baseURL + 'getAllHandy')
       .pipe(catchError(this._api.handleError));
   }
 
@@ -41,8 +41,10 @@ export class CounterService {
       username: username,
       session: session,
     };
-    
-    return this.http.post(this.baseURL + 'addHandy', payload);
+
+    return this.http
+      .post(this.baseURL + 'addHandy', payload)
+      .pipe(catchError(this._api.handleError));
     // .pipe(catchError(this._api.handleError));
   }
 }
