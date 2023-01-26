@@ -32,7 +32,7 @@ export class AuthService {
       tap({
         next: (data) => {
           console.log(data);
-          
+
           localStorage.removeItem('token');
         },
         error: (error) => console.log(error),

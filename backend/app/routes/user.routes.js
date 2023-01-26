@@ -27,4 +27,6 @@ module.exports = function (app) {
 
   app.get("/api/getAllHandy", controller.totalHandy);
 
+  app.get("/api/userHandy", controller.userHandy);
+
 };

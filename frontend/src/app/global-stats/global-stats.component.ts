@@ -23,19 +23,18 @@ export class GlobalStatsComponent {
       this.counter = res.total;
     });
 
-    // if (this.auth.isUserLogin()) {
-    //   this.isLogin = true;
-    //   let userData = JSON.parse(localStorage.getItem('userData')!);
+    this.isLogin = true;
+    const userData = JSON.parse(localStorage.getItem('token')!);
+    if (userData) {
+      this.counterService.getUserTotal(userData.username).subscribe((res) => {        
+        this.userCounter = res.total;
+      });
+    }
 
-    //   this.counterService.getUserTotal(userData.username).subscribe((res) => {
-    //     this.userCounter = res.data.total;
+    // this.counterService.getScoreboard().subscribe((res) => {
+    //   res.data.forEach((userEntry: { username: string; total: number }) => {
+    //     this.scoreboard.push(userEntry);
     //   });
-
-    //   this.counterService.getScoreboard().subscribe((res) => {
-    //     res.data.forEach((userEntry: { username: string; total: number }) => {
-    //       this.scoreboard.push(userEntry);
-    //     });
-    //   });
-    // }
+    // });
   }
 }

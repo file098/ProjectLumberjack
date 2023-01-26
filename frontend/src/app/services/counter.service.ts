@@ -26,7 +26,7 @@ export class CounterService {
   getUserTotal(username: string): Observable<any> {
     let body = { username: username };
     return this.http
-      .get(this.baseURL + 'getUserTotal', { params: body })
+      .get(this.baseURL + 'userHandy', { params: body })
       .pipe(catchError(this._api.handleError));
   }
 

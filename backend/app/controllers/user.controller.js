@@ -22,7 +22,7 @@ exports.totalHandy = (req, res) => {
     [
       {
         $project: {
-          _id: null,
+          _id: "username",
           tot: {
             $size: "$sessions",
           },
@@ -33,6 +33,37 @@ exports.totalHandy = (req, res) => {
           _id: "tot",
           total: {
             $sum: "$tot",
+          },
+        },
+      },
+    ],
+    function (err, result) {
+      if (err) console.log(err);
+      if (result.length > 0) {
+        return res.status(200).send(result[0]);
+      } else {
+        return res.status(500).send({ error: err });
+      }
+    }
+  );
+};
+
+exports.userHandy = (req, res) => {
+  const user = req.query.username;
+  User.aggregate(
+    [
+      {
+        $match: {
+          username: user,
+        },
+      },
+      {
+        $group: {
+          _id: "$username",
+          total: {
+            $sum: {
+              $size: "$sessions",
+            },
           },
         },
       },
