@@ -11,14 +11,29 @@ export class GlobalStatsComponent {
   isLogin: boolean = false;
   counter: number = 0;
   userCounter: number = 0;
-  scoreboard: { username: string; total: number }[] = [];
+  scoreboard: { _id: string; total: number }[] = [];
 
   constructor(
     private counterService: CounterService,
     private auth: AuthService
   ) {}
 
+  reset(): void {
+    this.isLogin = false;
+    this.counter = 0;
+    this.userCounter = 0;
+    this.scoreboard = [];
+  }
+
   ngOnInit(): void {
+    this.counterService.added.subscribe((data: string) => {
+      this.reset();
+      this.populateData();
+    });
+    this.populateData();
+  }
+
+  populateData(): void {
     this.counterService.getTotal().subscribe((res) => {
       this.counter = res.total;
     });
@@ -26,15 +41,18 @@ export class GlobalStatsComponent {
     this.isLogin = true;
     const userData = JSON.parse(localStorage.getItem('token')!);
     if (userData) {
-      this.counterService.getUserTotal(userData.username).subscribe((res) => {        
+      this.counterService.getUserTotal(userData.username).subscribe((res) => {
         this.userCounter = res.total;
       });
     }
 
-    // this.counterService.getScoreboard().subscribe((res) => {
-    //   res.data.forEach((userEntry: { username: string; total: number }) => {
-    //     this.scoreboard.push(userEntry);
-    //   });
-    // });
+    this.counterService.getScoreboard().subscribe((res) => {
+      res.forEach((userEntry: { _id: string; total: number }) => {
+        this.scoreboard.push(userEntry);
+      });
+      this.scoreboard.sort((a: any, b: any) => {
+        return b.total - a.total;
+      });
+    });
   }
 }

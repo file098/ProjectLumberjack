@@ -29,4 +29,6 @@ module.exports = function (app) {
 
   app.get("/api/userHandy", controller.userHandy);
 
+  app.get("/api/scoreboard", controller.scoreboard);
+
 };

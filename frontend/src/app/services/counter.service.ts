@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, retry, tap, throwError } from 'rxjs';
 import { Session } from '../models/sessions.model';
@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class CounterService {
+  @Output() added = new EventEmitter<any>();
+
   baseURL = 'http://localhost:8080/api/';
 
   constructor(private _api: ApiService, private http: HttpClient) {}
@@ -45,6 +47,9 @@ export class CounterService {
     return this.http
       .post(this.baseURL + 'addHandy', payload)
       .pipe(catchError(this._api.handleError));
-    // .pipe(catchError(this._api.handleError));
+  }
+
+  hasAdded(arg: string) {
+    this.added.emit(arg);
   }
 }

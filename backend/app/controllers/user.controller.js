@@ -110,3 +110,28 @@ exports.addHandy = (req, res) => {
     });
   }
 };
+
+exports.scoreboard = (req, res) => {
+  User.aggregate(
+    [
+      {
+        $group: {
+          _id: "$username",
+          total: {
+            $sum: {
+              $size: "$sessions",
+            },
+          },
+        },
+      },
+    ],
+    (error, result) => {
+      if (error) console.log(error);
+      if (result.length > 0) {
+        return res.status(200).send(result);
+      } else {
+        return res.status(500).send({ error: error });
+      }
+    }
+  );
+};
