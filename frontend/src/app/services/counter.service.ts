@@ -49,7 +49,7 @@ export class CounterService {
       .pipe(catchError(this._api.handleError));
   }
 
-  hasAdded(arg: string) {
-    this.added.emit(arg);
+  hasAdded() {
+    this.added.emit();
   }
 }

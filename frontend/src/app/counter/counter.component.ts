@@ -26,7 +26,7 @@ export class CounterComponent {
     if (username) {
       this.counterService.add(username, new Session()).subscribe((res) => {
         // avvisa il counter global che sono stati aggiunti dei dati (event emitter)
-      this.counterService.hasAdded("ciaoo")
+      this.counterService.hasAdded()
       });
     } else {
       console.log('not logged in');
