@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Hi {{data.username}}</h1>
+<div mat-dialog-content>
+  <p>Leave a review!</p>
+  <mat-form-field>
+    <textarea
+      matInput
+      [(ngModel)]="data.review"
+      class="textarea"
+      placeholder="e.g. Hello world"
+      rows="5"
+    ></textarea>
+  </mat-form-field>
+  <p>Sauce?</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.source" />
+  </mat-form-field>
+  <p>How much did you enjoy it?</p>
+  <mat-form-field>
+    <mat-label>Grade</mat-label>
+    <mat-select
+      #grade
+      value="0"
+      matInput
+      [(ngModel)]="data.grade"
+      type="number"
+    >
+      <mat-option value="1">1</mat-option>
+      <mat-option value="2">2</mat-option>
+      <mat-option value="3">3</mat-option>
+      <mat-option value="4">4</mat-option>
+      <mat-option value="5">5</mat-option>
+      <mat-option value="6">6</mat-option>
+      <mat-option value="7">7</mat-option>
+      <mat-option value="8">8</mat-option>
+      <mat-option value="9">9</mat-option>
+      <mat-option value="10">10</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button
+    mat-button
+    class="button is-large is-responsive is-danger is-outlined"
+    (click)="onNoClick()"
+  >
+    No Thanks
+  </button>
+  <button
+    class="button is-primary"
+    (click)="submit()"
+    cdkFocusInitial
+    class="button is-large is-responsive is-primary"
+  >
+    Add
+  </button>
+</div>

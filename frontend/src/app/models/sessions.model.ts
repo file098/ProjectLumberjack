@@ -4,10 +4,10 @@ export class Session {
   source: string | undefined;
   grade: number | null;
 
-  constructor() {
+  constructor(review: string, source: string, grade: number) {
     this.creationDate = new Date();
-    this.review = '';
-    this.source = '';
-    this.grade = null;
+    this.review = review;
+    this.source = source;
+    this.grade = grade;
   }
 }

@@ -24,7 +24,7 @@ export class InterceptorService {
       .clone({ headers: request.headers.set('Accept', 'application/json') })
       .clone({
         setHeaders: {
-          Authorization: `${this._auth.getToken()}`,
+          // Authorization: `${this._auth.getToken()}`,
         },
       });
     return next.handle(request);

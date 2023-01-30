@@ -70,7 +70,7 @@ exports.userHandy = (req, res) => {
     ],
     function (err, result) {
       if (err) console.log(err);
-      if (result.length > 0) {
+      if (result && result.length > 0) {
         return res.status(200).send(result[0]);
       } else {
         return res.status(500).send({ error: err });
@@ -84,7 +84,9 @@ exports.addHandy = (req, res) => {
     res.status(500).send("Body empty");
   } else {
     let requestSession = req.body.session;
-
+    
+    console.log(req.body.session.grade);
+    
     const query = { username: req.body.username };
     const update = {
       $push: {

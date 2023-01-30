@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ApiService } from './../../../services/api.service';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AuthService } from './../../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user.model';
@@ -12,11 +11,21 @@ import { User } from '../../../models/user.model';
 export class LoginComponent implements OnInit {
   isLogged: boolean = false;
   errorMessage: any;
+  myForm!: FormGroup;
+
   constructor(
-    private _api: ApiService,
     private auth: AuthService,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private fb: FormBuilder
+  ) {
+    this.createForm();
+  }
+
+  createForm() {
+    this.myForm = this.fb.group({
+      username: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.isLogged = localStorage.getItem('token') != undefined;
@@ -24,11 +33,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const user = new User(form.value.username, form.value.password);
-    
+
     this.auth.signIn(user).subscribe((res) => {
       if (res) {
         const token = JSON.stringify(res);
-        
+
         localStorage.setItem('token', token);
         this._router.navigate(['']);
       }

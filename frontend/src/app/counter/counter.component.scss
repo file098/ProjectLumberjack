@@ -31,3 +31,9 @@
     }
   }
 }
+
+::ng-deep .custom-modalbox {
+  .mat-mdc-form-field {
+    width: 100%;
+  }
+}

@@ -44,6 +44,8 @@ export class CounterService {
       session: session,
     };
 
+    console.log(payload);
+
     return this.http
       .post(this.baseURL + 'addHandy', payload)
       .pipe(catchError(this._api.handleError));
