@@ -1,10 +1,10 @@
 <div class="counter-wrapper">
-  <div *ngFor="let user of scoreboard" class="columns is-mobile">
+  <div *ngFor="let user of scoreboard" class="columns is-mobile row">
     <div class="column is-offset-1 is-two-thirds">
-      <h1>{{ user._id }}</h1>
+      <h1 class="user-id">{{ user._id }}</h1>
     </div>
     <div class="column is-offset-1 is-two-thirds">
-      <h1 class="">{{ user.total }}</h1>
+      <h1 class="total">{{ user.total }}</h1>
     </div>
   </div>
 

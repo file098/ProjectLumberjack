@@ -1,7 +1,28 @@
 .counter-wrapper {
-  height: fit-content;
+  // height: fit-content;
 
   padding: 16px;
+}
+
+.row {
+  color: whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+
+  &:first-child .total {
+    color: gold;
+  }
+
+  &:nth-child(2) .total {
+    color: silver;
+  }
+
+  &:nth-child(3) .total {
+    color: rgb(218, 138, 72);
+  }
+}
+
+.user-id {
+  font-weight: bold;
 }
 
 @media screen and (max-width: 480px) {
