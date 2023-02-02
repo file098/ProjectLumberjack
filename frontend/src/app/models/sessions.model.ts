@@ -1,13 +1,15 @@
 export class Session {
   creationDate: Date;
-  review: string | undefined;
-  source: string | undefined;
-  grade: number | null;
+  review: string;
+  source: string;
+  grade: number;
+  creator: string;
 
-  constructor(review: string, source: string, grade: number) {
+  constructor(username: string, review: string, source: string, grade: number) {
     this.creationDate = new Date();
     this.review = review;
     this.source = source;
     this.grade = grade;
+    this.creator = username;
   }
 }

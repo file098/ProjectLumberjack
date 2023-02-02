@@ -14,6 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './shared/material.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { RecentSessionComponent } from './recent-session/recent-session.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     HeaderComponent,
     GlobalStatsComponent,
     AddButtonDialog,
+    RecentSessionComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

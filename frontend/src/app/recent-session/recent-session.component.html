@@ -1,0 +1,11 @@
+<ul class="session-list">
+  <li *ngFor="let session of sessionsList" class="session-item">
+    <div class="columns">
+      <div class="column">{{ session.creator }}</div>
+      <div class="column">{{ session.creationDate.toLocaleDateString() }} </div>
+      <div class="column">{{ session.creationDate.toLocaleTimeString() }} </div>
+      <div class="column">{{ session.source }}</div>
+      <div class="column">{{ session.grade }}</div>
+    </div>
+  </li>
+</ul>

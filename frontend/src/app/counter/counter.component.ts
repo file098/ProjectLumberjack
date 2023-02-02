@@ -38,16 +38,6 @@ export class CounterComponent {
     this.username = JSON.parse(localStorage.getItem('token')!).username;
   }
 
-  // increment() {
-  //   if (this.username) {
-  //     this.counterService.add(this.username, new Session()).subscribe((res) => {
-  //       this.counterService.hasAdded();
-  //     });
-  //   } else {
-  //     console.log('not logged in');
-  //   }
-  // }
-
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
 
@@ -86,9 +76,19 @@ export class AddButtonDialog {
 
   submit() {
     console.log(this.data);
-    this.counterService.add(this.data.username, new Session(this.data.review, this.data.source, this.data.grade)).subscribe((res) => {
-      this.counterService.hasAdded();
-    });
+    this.counterService
+      .add(
+        this.data.username,
+        new Session(
+          this.data.username,
+          this.data.review,
+          this.data.source,
+          this.data.grade
+        )
+      )
+      .subscribe((res) => {
+        this.counterService.hasAdded();
+      });
     this.dialogRef.close();
   }
 }
