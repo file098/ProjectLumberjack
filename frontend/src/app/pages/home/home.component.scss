@@ -1,7 +1,6 @@
 .cards-container {
   display: flex;
   flex-flow: row;
-  flex-grow: 1;
   justify-content: center;
 
   // height: 100%;
@@ -22,7 +21,7 @@
   }
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 900px) {
   .cards-container {
     flex-flow: column;
     margin-top: 0;

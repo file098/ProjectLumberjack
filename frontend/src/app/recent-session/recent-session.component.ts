@@ -13,6 +13,7 @@ export class RecentSessionComponent implements OnInit {
   constructor(private counter: CounterService) {}
 
   ngOnInit(): void {
+    //TODO: aggiorna quando viene clickato il +
     this.sessionsList = this.getSessions();
   }
 
@@ -22,7 +23,7 @@ export class RecentSessionComponent implements OnInit {
     // this.counter.getRecentSessions();
 
     let mockDataArray: Array<Session> = [];
-    let mockData = new Session('mockUser', 'ok', 'http', 5);
+    let mockData = new Session('mockUser', 'ok', 'google.com', 5);
     for (let index = 0; index < 5; index++) {
       mockDataArray.push(mockData);
     }

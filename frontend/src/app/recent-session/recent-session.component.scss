@@ -1,6 +1,10 @@
 .session-list {
   padding: 2em;
+  overflow: scroll;
 }
 .session-item {
+  padding: 25px 0;
+  
+  text-align: center;
   color: whitesmoke;
 }
