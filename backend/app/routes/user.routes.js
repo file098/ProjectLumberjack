@@ -22,13 +22,4 @@ module.exports = function (app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
-
-  app.post("/api/addHandy", controller.addHandy);
-
-  app.get("/api/getAllHandy", controller.totalHandy);
-
-  app.get("/api/userHandy", controller.userHandy);
-
-  app.get("/api/scoreboard", controller.scoreboard);
-
 };
